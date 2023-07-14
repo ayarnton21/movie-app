@@ -1,8 +1,28 @@
 import React from "react";
+import { useQuery } from "react-query";
 import logo from "./logo.svg";
 import "./App.css";
+import getMovies from "./services/getMovies";
 
 function App() {
+  const { data, isLoading, isError } = useQuery(
+    "get-movies",
+    () => getMovies(),
+    {
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    }
+  );
+
+  if (isLoading) {
+    return <span>loading...</span>;
+  }
+
+  if (isError) {
+    return <span>There is an error</span>;
+  }
+
+  console.log(data);
   return (
     <div className="App">
       <header className="App-header">
