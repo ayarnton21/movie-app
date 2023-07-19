@@ -1,4 +1,4 @@
-import { GetMovieType } from "./getMovieType";
+import { GetMovieType } from "../getMovieType";
 
 const getMovies = () => {
   return fetch(
